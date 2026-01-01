@@ -1,7 +1,8 @@
 <?php
-define('DB_HOST', 'localhost:8888');
+// config.php - Database configuration for MAMP
+define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
-define('DB_PASS', 'root');
+define('DB_PASS', ''); // Try empty password first
 define('DB_NAME', 'user_auth_system');
 
 // Create connection
