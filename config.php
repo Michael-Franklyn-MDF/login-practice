@@ -1,6 +1,6 @@
 <?php
 // config.php - Database configuration for MAMP
-define('DB_HOST', 'localhost:8888'); // Added port 8889 for MAMP
+define('DB_HOST', 'localhost:8889'); // Added port 8889 for MAMP
 define('DB_USER', 'root');
 define('DB_PASS', 'root'); // MAMP default password
 define('DB_NAME', 'user_auth_system');
