@@ -1,12 +1,9 @@
 <?php
 // config.php - Database configuration for MAMP
-define('DB_HOST', 'localhost');
+define('DB_HOST', 'localhost:8889'); // Added port 8889 for MAMP
 define('DB_USER', 'root');
-define('DB_PASS', 'root');  // MAMP default password is 'root'
+define('DB_PASS', 'root'); // MAMP default password
 define('DB_NAME', 'user_auth_system');
-
-// MAMP uses port 8889 for MySQL by default
-// But we connect through localhost, so this should work
 
 // Create connection
 function getDBConnection()
@@ -25,4 +22,3 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 ?>
-```
