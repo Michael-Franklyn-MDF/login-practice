@@ -2,7 +2,7 @@
 // config.php - Database configuration
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root'); // Change to your MySQL username
-define('DB_PASS', '');
+define('DB_PASS', 'chris2019@2020');
 define('DB_NAME', 'user_auth_system');
 
 // Create connection
