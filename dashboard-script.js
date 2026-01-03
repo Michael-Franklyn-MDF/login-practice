@@ -146,3 +146,49 @@ async function deleteAccount() {
         showMessage('An error occurred. Please try again.', 'error');
     }
 }
+
+// Password Strength Checker
+function checkPasswordStrength(inputId, barId) {
+    const password = document.getElementById(inputId).value;
+    const strengthBar = document.getElementById(barId);
+    const strengthText = document.getElementById(barId + 'Text');
+
+    // Requirements
+    const requirements = {
+        length: password.length >= 8,
+        uppercase: /[A-Z]/.test(password),
+        lowercase: /[a-z]/.test(password),
+        number: /[0-9]/.test(password)
+    };
+
+    // Calculate strength
+    let strength = 0;
+    if (requirements.length) strength++;
+    if (requirements.uppercase) strength++;
+    if (requirements.lowercase) strength++;
+    if (requirements.number) strength++;
+
+    // Special characters bonus
+    if (/[^A-Za-z0-9]/.test(password)) strength++;
+
+    // Update UI
+    strengthBar.className = 'password-strength-bar';
+    strengthText.className = 'password-strength-text';
+
+    if (password.length === 0) {
+        strengthBar.className = 'password-strength-bar';
+        strengthText.textContent = '';
+    } else if (strength <= 2) {
+        strengthBar.classList.add('weak');
+        strengthText.classList.add('weak');
+        strengthText.textContent = '❌ Weak password';
+    } else if (strength <= 4) {
+        strengthBar.classList.add('medium');
+        strengthText.classList.add('medium');
+        strengthText.textContent = '⚠️ Medium password';
+    } else {
+        strengthBar.classList.add('strong');
+        strengthText.classList.add('strong');
+        strengthText.textContent = '✓ Strong password';
+    }
+}
