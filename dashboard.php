@@ -145,7 +145,12 @@ $conn->close();
                             </div>
                             <div class="form-group">
                                 <label for="newPassword">New Password</label>
-                                <input type="password" id="newPassword" required>
+                                <input type="password" id="newPassword" required
+                                    oninput="checkPasswordStrength('newPassword', 'dashStrength')">
+                                <div class="password-strength">
+                                    <div id="dashStrength" class="password-strength-bar"></div>
+                                </div>
+                                <div id="dashStrengthText" class="password-strength-text"></div>
                             </div>
                             <div class="form-group">
                                 <label for="confirmNewPassword">Confirm New Password</label>
