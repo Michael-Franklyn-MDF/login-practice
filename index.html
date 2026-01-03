@@ -51,7 +51,20 @@
                         </div>
                         <div class="input-group">
                             <label for="signupPassword">Password</label>
-                            <input type="password" id="signupPassword" required>
+                            <input type="password" id="signupPassword" required
+                                oninput="checkPasswordStrength('signupPassword', 'signupStrength')">
+                            <div class="password-strength">
+                                <div id="signupStrength" class="password-strength-bar"></div>
+                            </div>
+                            <div id="signupStrengthText" class="password-strength-text"></div>
+                            <div class="password-requirements">
+                                <ul id="signupRequirements">
+                                    <li id="req-length">At least 8 characters</li>
+                                    <li id="req-uppercase">One uppercase letter</li>
+                                    <li id="req-lowercase">One lowercase letter</li>
+                                    <li id="req-number">One number</li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="input-group">
                             <label for="signupConfirmPassword">Confirm Password</label>
