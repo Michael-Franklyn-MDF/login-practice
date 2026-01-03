@@ -25,6 +25,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = "Password must be at least 6 characters";
     }
 
+    // Check password strength
+    $hasUppercase = preg_match('/[A-Z]/', $password);
+    $hasLowercase = preg_match('/[a-z]/', $password);
+    $hasNumber = preg_match('/[0-9]/', $password);
+
+    if (!$hasUppercase || !$hasLowercase || !$hasNumber) {
+        $errors[] = "Password must contain uppercase, lowercase, and numbers";
+    }
+
     if ($password !== $confirm_password) {
         $errors[] = "Passwords do not match";
     }
