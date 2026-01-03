@@ -1,6 +1,6 @@
 <?php
 // dashboard.php
-require_once '../config.php';
+require_once 'config.php';
 
 // Check if user is logged in
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
@@ -52,7 +52,7 @@ $conn->close();
                 <a href="#" class="nav-item" onclick="showSection('settings')">
                     <span class="icon">⚙️</span> Settings
                 </a>
-                <a href="../logout.php" class="nav-item logout">
+                <a href="logout.php" class="nav-item logout">
                     <span class="icon">🚪</span> Logout
                 </a>
             </nav>

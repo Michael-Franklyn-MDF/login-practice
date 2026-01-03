@@ -54,7 +54,7 @@ async function handleEditProfile(e) {
     formData.append('email', email);
 
     try {
-        const response = await fetch('../backend/update_profile.php', {
+        const response = await fetch('update_profile.php', {
             method: 'POST',
             body: formData
         });
@@ -98,7 +98,7 @@ async function handleChangePassword(e) {
     formData.append('new_password', newPassword);
 
     try {
-        const response = await fetch('../backend/change_password.php', {
+        const response = await fetch('change_password.php', {
             method: 'POST',
             body: formData
         });
@@ -130,7 +130,7 @@ function confirmDelete() {
 
 async function deleteAccount() {
     try {
-        const response = await fetch('../backend/delete_account.php', {
+        const response = await fetch('delete_account.php', {
             method: 'POST'
         });
 

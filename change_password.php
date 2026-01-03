@@ -1,6 +1,6 @@
 <?php
 // backend/change_password.php
-require_once '../config.php';
+require_once 'config.php';
 
 header('Content-Type: application/json');
 
