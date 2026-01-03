@@ -13,30 +13,35 @@ A modern, secure, and feature-rich user authentication system built with PHP, My
 ## ✨ Features
 
 ### 🔒 Authentication
+
 - **User Registration** - Secure signup with validation
 - **User Login** - Session-based authentication
 - **Secure Logout** - Clean session termination
 - **Password Hashing** - BCrypt password encryption
 
 ### 🎨 User Interface
+
 - **Modern Design** - Clean and intuitive interface
 - **Responsive Layout** - Works on all devices
 - **Smooth Animations** - Professional transitions and effects
 - **Real-time Validation** - Instant feedback on form inputs
 
 ### 💪 Password Security
+
 - **Strength Indicator** - Visual password strength meter
 - **Requirements Checklist** - Clear password requirements
 - **Secure Storage** - Passwords hashed with `password_hash()`
 - **Validation Rules** - Enforced strong password policies
 
 ### 👤 User Dashboard
+
 - **Profile Management** - View and edit user information
 - **Password Change** - Update password securely
 - **Account Settings** - Manage account preferences
 - **Account Deletion** - Option to delete account
 
 ### ✅ Form Validation
+
 - **Client-side Validation** - Instant feedback as you type
 - **Server-side Validation** - Double-layer security
 - **Error Messages** - Clear, specific error feedback
@@ -70,12 +75,14 @@ login-practice/
 ## 🚀 Installation
 
 ### Prerequisites
+
 - **MAMP** / **XAMPP** / **WAMP** (Local server environment)
 - **MySQL** (Database server)
 - **PHP 7.4+** (Server-side scripting)
 - Modern web browser
 
 ### Step 1: Clone or Download
+
 ```bash
 # Clone the repository
 git clone https://github.com/yourusername/login-practice.git
@@ -84,6 +91,7 @@ git clone https://github.com/yourusername/login-practice.git
 ```
 
 ### Step 2: Set Up Local Server
+
 1. Install **MAMP**, **XAMPP**, or **WAMP**
 2. Place the project folder in your server's directory:
    - **MAMP**: `/Applications/MAMP/htdocs/login-practice/`
@@ -91,6 +99,7 @@ git clone https://github.com/yourusername/login-practice.git
    - **WAMP**: `C:\wamp64\www\login-practice\`
 
 ### Step 3: Configure Database
+
 1. Open **phpMyAdmin**: `http://localhost:8888/phpMyAdmin/` (or port 80 for XAMPP/WAMP)
 2. Click the **SQL** tab
 3. Run this SQL script:
@@ -123,6 +132,7 @@ CREATE TABLE IF NOT EXISTS user_sessions (
 ```
 
 ### Step 4: Update Configuration
+
 Open `config.php` and verify/update these settings:
 
 ```php
@@ -134,11 +144,14 @@ $DB_PORT = 3306;          // 3306 for XAMPP/WAMP, 8889 for MAMP
 ```
 
 ### Step 5: Start Your Server
+
 1. Start **Apache** and **MySQL** in your server control panel
 2. Verify services are running (green lights)
 
 ### Step 6: Access the Application
+
 Open your browser and navigate to:
+
 - **MAMP**: `http://localhost:8888/login-practice/`
 - **XAMPP/WAMP**: `http://localhost/login-practice/`
 
@@ -147,6 +160,7 @@ Open your browser and navigate to:
 ## 🎯 Usage
 
 ### Creating an Account
+
 1. Click the **"Sign Up"** tab
 2. Enter your details:
    - Username (3-20 characters, letters/numbers/underscores)
@@ -157,12 +171,14 @@ Open your browser and navigate to:
 4. Click **"Sign Up"**
 
 ### Logging In
+
 1. Click the **"Login"** tab
 2. Enter your email and password
 3. Click **"Login"**
 4. You'll be redirected to your dashboard
 
 ### Managing Your Profile
+
 1. **View Profile**: See your account information
 2. **Edit Profile**: Update username or email
 3. **Change Password**: Update your password securely
@@ -173,6 +189,7 @@ Open your browser and navigate to:
 ## 🔧 Configuration
 
 ### Database Settings
+
 Edit `config.php` to match your environment:
 
 ```php
@@ -186,10 +203,13 @@ $DB_PASS = '';
 ```
 
 ### Session Settings
+
 Sessions are automatically managed. Default timeout: browser session.
 
 ### Password Requirements
+
 Current requirements (can be modified in validation functions):
+
 - Minimum 8 characters
 - At least one uppercase letter (A-Z)
 - At least one lowercase letter (a-z)
@@ -214,6 +234,7 @@ Current requirements (can be modified in validation functions):
 ## 📊 Database Schema
 
 ### Users Table
+
 ```sql
 user_id          INT (PK, AUTO_INCREMENT)
 username         VARCHAR(50) UNIQUE NOT NULL
@@ -225,6 +246,7 @@ is_active        BOOLEAN DEFAULT TRUE
 ```
 
 ### User Sessions Table (Optional - for future use)
+
 ```sql
 session_id       INT (PK, AUTO_INCREMENT)
 user_id          INT (FK -> users.user_id)
@@ -239,6 +261,7 @@ ip_address       VARCHAR(45)
 ## 🎨 Customization
 
 ### Changing Colors
+
 Edit `style.css` and `dashboard-style.css`:
 
 ```css
@@ -253,6 +276,7 @@ background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 ```
 
 ### Modifying Validation Rules
+
 Edit validation functions in `script.js` and `dashboard-script.js`:
 
 ```javascript
@@ -273,27 +297,35 @@ const requirements = {
 ## 🐛 Troubleshooting
 
 ### Can't Connect to Database
+
 ```
 Error: Connection failed: Access denied for user 'root'@'localhost'
 ```
+
 **Solution**: Check your database credentials in `config.php`. Verify MySQL is running.
 
 ### 404 Error on Dashboard
+
 ```
 GET http://localhost:8888/dashboard.php 404 (Not Found)
 ```
+
 **Solution**: Ensure `dashboard.php` exists in your project folder.
 
 ### Password Won't Change
+
 **Solution**: Check that your current password is correct. Verify `change_password.php` is accessible.
 
 ### Forms Not Submitting
-**Solution**: 
+
+**Solution**:
+
 1. Check browser console (F12) for JavaScript errors
 2. Verify all PHP files have correct paths
 3. Ensure forms have `onsubmit` handlers
 
 ### Session Issues
+
 **Solution**: Clear your browser cookies and try again. Verify `config.php` starts the session.
 
 ---
@@ -336,8 +368,9 @@ This project is open source and available under the [MIT License](LICENSE).
 ## 👨‍💻 Author
 
 **Your Name**
+
 - GitHub: [@yourusername](https://github.com/yourusername)
-- Email: your.email@example.com
+- Email: <your.email@example.com>
 
 ---
 
@@ -352,15 +385,21 @@ This project is open source and available under the [MIT License](LICENSE).
 ## 📸 Screenshots
 
 ### Login Page
+
 ![Login Page](screenshots/login.png)
 
 ### Signup with Validation
+
 ![Signup Page](screenshots/signup.png)
 
 ### User Dashboard
-![Dashboard](screenshots/dashboard.png)
+
+![Profile](screenshots/profile.png)
+![Profile](screenshots/password.png)
+![Profile](screenshots/settings.png)
 
 ### Profile Management
+
 ![Profile Edit](screenshots/edit-profile.png)
 
 ---
@@ -371,7 +410,7 @@ If you encounter any issues or have questions:
 
 1. Check the [Troubleshooting](#-troubleshooting) section
 2. Open an issue on GitHub
-3. Contact: michaeldavidfrankyl@gmail.com
+3. Contact: <michaeldavidfrankyl@gmail.com>
 
 ---
 
