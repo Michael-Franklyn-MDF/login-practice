@@ -369,23 +369,33 @@ body {
 .form-group.error input {
     border-color: #e53e3e;
     background-color: #fff5f5;
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.2);
 }
 
 .form-group.success input {
     border-color: #48bb78;
     background-color: #f0fff4;
+    box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.2);
 }
 
 .field-error {
     color: #e53e3e;
-    font-size: 12px;
-    margin-top: 5px;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 6px;
     display: none;
+    align-items: center;
+    animation: shakeError 0.3s cubic-bezier(.36, .07, .19, .97) both;
+}
+
+.field-error::before {
+    content: "⚠️";
+    margin-right: 6px;
+    font-size: 14px;
 }
 
 .field-error.show {
-    display: block;
-    animation: shakeError 0.3s;
+    display: flex;
 }
 
 @keyframes shakeError {
