@@ -46,7 +46,7 @@ async function handleLogin(e) {
         if (data.success) {
             showMessage(data.message, 'success');
             setTimeout(() => {
-                showDashboard(data.user);
+                window.location.href = 'dashboard.php';
             }, 1000);
         } else {
             showMessage(data.message, 'error');
