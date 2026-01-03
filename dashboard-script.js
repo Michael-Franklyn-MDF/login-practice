@@ -49,6 +49,22 @@ async function handleEditProfile(e) {
     const username = document.getElementById('editUsername').value;
     const email = document.getElementById('editEmail').value;
 
+    // Validate before submitting
+    let isValid = true;
+
+    if (!validateDashUsername()) {
+        isValid = false;
+    }
+
+    if (!validateDashEmail()) {
+        isValid = false;
+    }
+
+    if (!isValid) {
+        showMessage('Please fix the errors above', 'error');
+        return;
+    }
+
     const formData = new FormData();
     formData.append('username', username);
     formData.append('email', email);
@@ -83,13 +99,34 @@ async function handleChangePassword(e) {
     const newPassword = document.getElementById('newPassword').value;
     const confirmNewPassword = document.getElementById('confirmNewPassword').value;
 
-    if (newPassword !== confirmNewPassword) {
-        showMessage('New passwords do not match', 'error');
-        return;
+    // Clear previous errors
+    clearDashFieldError('currentPassword');
+    clearDashFieldError('newPassword');
+    clearDashFieldError('confirmNewPassword');
+
+    let isValid = true;
+
+    if (newPassword.length < 8) {
+        showDashFieldError('newPassword', 'Password must be at least 8 characters');
+        isValid = false;
     }
 
-    if (newPassword.length < 6) {
-        showMessage('New password must be at least 6 characters', 'error');
+    const hasUppercase = /[A-Z]/.test(newPassword);
+    const hasLowercase = /[a-z]/.test(newPassword);
+    const hasNumber = /[0-9]/.test(newPassword);
+
+    if (!hasUppercase || !hasLowercase || !hasNumber) {
+        showDashFieldError('newPassword', 'Password must contain uppercase, lowercase, and numbers');
+        isValid = false;
+    }
+
+    if (newPassword !== confirmNewPassword) {
+        showDashFieldError('confirmNewPassword', 'Passwords do not match');
+        isValid = false;
+    }
+
+    if (!isValid) {
+        showMessage('Please fix the errors above', 'error');
         return;
     }
 
@@ -108,7 +145,13 @@ async function handleChangePassword(e) {
         if (data.success) {
             showMessage(data.message, 'success');
             document.getElementById('changePasswordForm').reset();
+            clearDashFieldError('currentPassword');
+            clearDashFieldError('newPassword');
+            clearDashFieldError('confirmNewPassword');
         } else {
+            if (data.message.includes('Current password')) {
+                showDashFieldError('currentPassword', data.message);
+            }
             showMessage(data.message, 'error');
         }
     } catch (error) {
@@ -191,4 +234,77 @@ function checkPasswordStrength(inputId, barId) {
         strengthText.classList.add('strong');
         strengthText.textContent = '✓ Strong password';
     }
+}
+
+// Dashboard Validation Functions
+function showDashFieldError(fieldId, message) {
+    const formGroup = document.getElementById(fieldId).closest('.form-group');
+    const errorDiv = document.getElementById(fieldId + '-error');
+
+    formGroup.classList.add('error');
+    formGroup.classList.remove('success');
+
+    if (errorDiv) {
+        errorDiv.textContent = message;
+        errorDiv.classList.add('show');
+    }
+}
+
+function clearDashFieldError(fieldId) {
+    const formGroup = document.getElementById(fieldId).closest('.form-group');
+    const errorDiv = document.getElementById(fieldId + '-error');
+
+    formGroup.classList.remove('error', 'success');
+
+    if (errorDiv) {
+        errorDiv.classList.remove('show');
+    }
+}
+
+function validateDashUsername() {
+    const username = document.getElementById('editUsername').value;
+
+    if (username.length < 3) {
+        showDashFieldError('editUsername', 'Username must be at least 3 characters');
+        return false;
+    }
+
+    if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+        showDashFieldError('editUsername', 'Username can only contain letters, numbers, and underscores');
+        return false;
+    }
+
+    clearDashFieldError('editUsername');
+    return true;
+}
+
+function validateDashEmail() {
+    const email = document.getElementById('editEmail').value;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+        showDashFieldError('editEmail', 'Please enter a valid email address');
+        return false;
+    }
+
+    clearDashFieldError('editEmail');
+    return true;
+}
+
+function validateDashConfirmPassword() {
+    const newPassword = document.getElementById('newPassword').value;
+    const confirmPassword = document.getElementById('confirmNewPassword').value;
+
+    if (confirmPassword.length === 0) {
+        clearDashFieldError('confirmNewPassword');
+        return false;
+    }
+
+    if (newPassword !== confirmPassword) {
+        showDashFieldError('confirmNewPassword', 'Passwords do not match');
+        return false;
+    }
+
+    clearDashFieldError('confirmNewPassword');
+    return true;
 }

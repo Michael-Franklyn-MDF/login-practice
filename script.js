@@ -64,6 +64,31 @@ async function handleSignup(e) {
     const password = document.getElementById('signupPassword').value;
     const confirmPassword = document.getElementById('signupConfirmPassword').value;
 
+    // Client-side validation
+    let isValid = true;
+
+    if (!validateUsername('signupUsername')) {
+        isValid = false;
+    }
+
+    if (!validateEmail('signupEmail')) {
+        isValid = false;
+    }
+
+    if (!validatePassword('signupPassword')) {
+        showFieldError('signupPassword', 'Password must be at least 8 characters with uppercase, lowercase, and numbers');
+        isValid = false;
+    }
+
+    if (!validateConfirmPassword('signupPassword', 'signupConfirmPassword')) {
+        isValid = false;
+    }
+
+    if (!isValid) {
+        showMessage('Please fix the errors above', 'error');
+        return;
+    }
+
     const formData = new FormData();
     formData.append('username', username);
     formData.append('email', email);
@@ -83,6 +108,11 @@ async function handleSignup(e) {
             setTimeout(() => {
                 switchTab('login');
                 document.getElementById('signupForm').reset();
+                // Clear all validation states
+                clearFieldValidation('signupUsername');
+                clearFieldValidation('signupEmail');
+                clearFieldValidation('signupPassword');
+                clearFieldValidation('signupConfirmPassword');
             }, 1500);
         } else {
             showMessage(data.message, 'error');
@@ -168,4 +198,148 @@ function checkPasswordStrength(inputId, barId) {
         strengthText.classList.add('strong');
         strengthText.textContent = '✓ Strong password';
     }
+}
+
+// Validation Functions
+function showFieldError(fieldId, message) {
+    const inputGroup = document.getElementById(fieldId).closest('.input-group');
+    const errorDiv = document.getElementById(fieldId + '-error');
+    const successDiv = document.getElementById(fieldId + '-success');
+    const icon = document.getElementById(fieldId + '-icon');
+
+    inputGroup.classList.add('error');
+    inputGroup.classList.remove('success');
+
+    if (errorDiv) {
+        errorDiv.textContent = message;
+        errorDiv.classList.add('show');
+    }
+
+    if (successDiv) {
+        successDiv.classList.remove('show');
+    }
+
+    if (icon) {
+        icon.textContent = '✕';
+        icon.className = 'validation-icon error show';
+    }
+}
+
+function showFieldSuccess(fieldId, message = '') {
+    const inputGroup = document.getElementById(fieldId).closest('.input-group');
+    const errorDiv = document.getElementById(fieldId + '-error');
+    const successDiv = document.getElementById(fieldId + '-success');
+    const icon = document.getElementById(fieldId + '-icon');
+
+    inputGroup.classList.remove('error');
+    inputGroup.classList.add('success');
+
+    if (errorDiv) {
+        errorDiv.classList.remove('show');
+    }
+
+    if (successDiv && message) {
+        successDiv.textContent = message;
+        successDiv.classList.add('show');
+    }
+
+    if (icon) {
+        icon.textContent = '✓';
+        icon.className = 'validation-icon success show';
+    }
+}
+
+function clearFieldValidation(fieldId) {
+    const inputGroup = document.getElementById(fieldId).closest('.input-group');
+    const errorDiv = document.getElementById(fieldId + '-error');
+    const successDiv = document.getElementById(fieldId + '-success');
+    const icon = document.getElementById(fieldId + '-icon');
+
+    inputGroup.classList.remove('error', 'success');
+
+    if (errorDiv) errorDiv.classList.remove('show');
+    if (successDiv) successDiv.classList.remove('show');
+    if (icon) icon.classList.remove('show');
+}
+
+function validateUsername(fieldId) {
+    const username = document.getElementById(fieldId).value;
+
+    if (username.length === 0) {
+        clearFieldValidation(fieldId);
+        return false;
+    }
+
+    if (username.length < 3) {
+        showFieldError(fieldId, 'Username must be at least 3 characters');
+        return false;
+    }
+
+    if (username.length > 20) {
+        showFieldError(fieldId, 'Username must be less than 20 characters');
+        return false;
+    }
+
+    if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+        showFieldError(fieldId, 'Username can only contain letters, numbers, and underscores');
+        return false;
+    }
+
+    showFieldSuccess(fieldId, '✓ Username looks good');
+    return true;
+}
+
+function validateEmail(fieldId) {
+    const email = document.getElementById(fieldId).value;
+
+    if (email.length === 0) {
+        clearFieldValidation(fieldId);
+        return false;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+        showFieldError(fieldId, 'Please enter a valid email address');
+        return false;
+    }
+
+    showFieldSuccess(fieldId, '✓ Email looks good');
+    return true;
+}
+
+function validatePassword(fieldId) {
+    const password = document.getElementById(fieldId).value;
+
+    if (password.length === 0) {
+        return false;
+    }
+
+    if (password.length < 8) {
+        return false;
+    }
+
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasLowercase = /[a-z]/.test(password);
+    const hasNumber = /[0-9]/.test(password);
+
+    return hasUppercase && hasLowercase && hasNumber;
+}
+
+function validateConfirmPassword(passwordId, confirmPasswordId) {
+    const password = document.getElementById(passwordId).value;
+    const confirmPassword = document.getElementById(confirmPasswordId).value;
+
+    if (confirmPassword.length === 0) {
+        clearFieldValidation(confirmPasswordId);
+        return false;
+    }
+
+    if (password !== confirmPassword) {
+        showFieldError(confirmPasswordId, 'Passwords do not match');
+        return false;
+    }
+
+    showFieldSuccess(confirmPasswordId, '✓ Passwords match');
+    return true;
 }

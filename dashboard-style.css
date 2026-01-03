@@ -364,3 +364,42 @@ body {
 .password-strength-text.strong {
     color: #48bb78;
 }
+
+/* Field Error Styling */
+.form-group.error input {
+    border-color: #e53e3e;
+    background-color: #fff5f5;
+}
+
+.form-group.success input {
+    border-color: #48bb78;
+    background-color: #f0fff4;
+}
+
+.field-error {
+    color: #e53e3e;
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+}
+
+.field-error.show {
+    display: block;
+    animation: shakeError 0.3s;
+}
+
+@keyframes shakeError {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}

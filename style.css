@@ -268,3 +268,82 @@ input:focus {
     content: "✓";
     color: #48bb78;
 }
+
+/* Field Error Styling */
+.input-group.error input {
+    border-color: #e53e3e;
+    background-color: #fff5f5;
+}
+
+.input-group.success input {
+    border-color: #48bb78;
+    background-color: #f0fff4;
+}
+
+.field-error {
+    color: #e53e3e;
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+    animation: shakeError 0.3s;
+}
+
+.field-error.show {
+    display: block;
+}
+
+.field-success {
+    color: #48bb78;
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+}
+
+.field-success.show {
+    display: block;
+}
+
+@keyframes shakeError {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+.input-icon {
+    position: relative;
+}
+
+.input-icon input {
+    padding-right: 40px;
+}
+
+.validation-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    display: none;
+}
+
+.validation-icon.error {
+    color: #e53e3e;
+}
+
+.validation-icon.success {
+    color: #48bb78;
+}
+
+.validation-icon.show {
+    display: block;
+}

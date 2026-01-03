@@ -118,12 +118,16 @@ $conn->close();
                             <div class="form-group">
                                 <label for="editUsername">Username</label>
                                 <input type="text" id="editUsername"
-                                    value="<?php echo htmlspecialchars($user['username']); ?>" required>
+                                    value="<?php echo htmlspecialchars($user['username']); ?>" required
+                                    oninput="validateDashUsername()">
+                                <div class="field-error" id="editUsername-error"></div>
                             </div>
                             <div class="form-group">
                                 <label for="editEmail">Email Address</label>
                                 <input type="email" id="editEmail"
-                                    value="<?php echo htmlspecialchars($user['email']); ?>" required>
+                                    value="<?php echo htmlspecialchars($user['email']); ?>" required
+                                    oninput="validateDashEmail()">
+                                <div class="field-error" id="editEmail-error"></div>
                             </div>
                             <button type="submit" class="btn btn-primary">Save Changes</button>
                         </form>
@@ -142,6 +146,7 @@ $conn->close();
                             <div class="form-group">
                                 <label for="currentPassword">Current Password</label>
                                 <input type="password" id="currentPassword" required>
+                                <div class="field-error" id="currentPassword-error"></div>
                             </div>
                             <div class="form-group">
                                 <label for="newPassword">New Password</label>
@@ -151,10 +156,13 @@ $conn->close();
                                     <div id="dashStrength" class="password-strength-bar"></div>
                                 </div>
                                 <div id="dashStrengthText" class="password-strength-text"></div>
+                                <div class="field-error" id="newPassword-error"></div>
                             </div>
                             <div class="form-group">
                                 <label for="confirmNewPassword">Confirm New Password</label>
-                                <input type="password" id="confirmNewPassword" required>
+                                <input type="password" id="confirmNewPassword" required
+                                    oninput="validateDashConfirmPassword()">
+                                <div class="field-error" id="confirmNewPassword-error"></div>
                             </div>
                             <button type="submit" class="btn btn-primary">Update Password</button>
                         </form>

@@ -27,11 +27,19 @@
                     <form onsubmit="handleLogin(event)">
                         <div class="input-group">
                             <label for="loginEmail">Email</label>
-                            <input type="email" id="loginEmail" required>
+                            <div class="input-icon">
+                                <input type="email" id="loginEmail" required onblur="validateEmail('loginEmail')">
+                                <span class="validation-icon" id="loginEmail-icon"></span>
+                            </div>
+                            <div class="field-error" id="loginEmail-error"></div>
                         </div>
                         <div class="input-group">
                             <label for="loginPassword">Password</label>
-                            <input type="password" id="loginPassword" required>
+                            <div class="input-icon">
+                                <input type="password" id="loginPassword" required>
+                                <span class="validation-icon" id="loginPassword-icon"></span>
+                            </div>
+                            <div class="field-error" id="loginPassword-error"></div>
                         </div>
                         <button type="submit" class="btn">Login</button>
                     </form>
@@ -43,16 +51,32 @@
                     <form onsubmit="handleSignup(event)">
                         <div class="input-group">
                             <label for="signupUsername">Username</label>
-                            <input type="text" id="signupUsername" required>
+                            <div class="input-icon">
+                                <input type="text" id="signupUsername" required
+                                    oninput="validateUsername('signupUsername')"
+                                    onblur="validateUsername('signupUsername')">
+                                <span class="validation-icon" id="signupUsername-icon"></span>
+                            </div>
+                            <div class="field-error" id="signupUsername-error"></div>
+                            <div class="field-success" id="signupUsername-success"></div>
                         </div>
                         <div class="input-group">
                             <label for="signupEmail">Email</label>
-                            <input type="email" id="signupEmail" required>
+                            <div class="input-icon">
+                                <input type="email" id="signupEmail" required oninput="validateEmail('signupEmail')"
+                                    onblur="validateEmail('signupEmail')">
+                                <span class="validation-icon" id="signupEmail-icon"></span>
+                            </div>
+                            <div class="field-error" id="signupEmail-error"></div>
+                            <div class="field-success" id="signupEmail-success"></div>
                         </div>
                         <div class="input-group">
                             <label for="signupPassword">Password</label>
-                            <input type="password" id="signupPassword" required
-                                oninput="checkPasswordStrength('signupPassword', 'signupStrength')">
+                            <div class="input-icon">
+                                <input type="password" id="signupPassword" required
+                                    oninput="checkPasswordStrength('signupPassword', 'signupStrength'); validatePassword('signupPassword')">
+                                <span class="validation-icon" id="signupPassword-icon"></span>
+                            </div>
                             <div class="password-strength">
                                 <div id="signupStrength" class="password-strength-bar"></div>
                             </div>
@@ -68,7 +92,13 @@
                         </div>
                         <div class="input-group">
                             <label for="signupConfirmPassword">Confirm Password</label>
-                            <input type="password" id="signupConfirmPassword" required>
+                            <div class="input-icon">
+                                <input type="password" id="signupConfirmPassword" required
+                                    oninput="validateConfirmPassword('signupPassword', 'signupConfirmPassword')">
+                                <span class="validation-icon" id="signupConfirmPassword-icon"></span>
+                            </div>
+                            <div class="field-error" id="signupConfirmPassword-error"></div>
+                            <div class="field-success" id="signupConfirmPassword-success"></div>
                         </div>
                         <button type="submit" class="btn">Sign Up</button>
                     </form>
