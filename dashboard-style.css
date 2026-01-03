@@ -315,3 +315,52 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* Password Strength Indicator */
+.password-strength {
+    margin-top: 8px;
+    height: 4px;
+    background: #e2e8f0;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.password-strength-bar {
+    height: 100%;
+    width: 0;
+    transition: all 0.3s;
+    border-radius: 2px;
+}
+
+.password-strength-bar.weak {
+    width: 33%;
+    background: #e53e3e;
+}
+
+.password-strength-bar.medium {
+    width: 66%;
+    background: #ed8936;
+}
+
+.password-strength-bar.strong {
+    width: 100%;
+    background: #48bb78;
+}
+
+.password-strength-text {
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.password-strength-text.weak {
+    color: #e53e3e;
+}
+
+.password-strength-text.medium {
+    color: #ed8936;
+}
+
+.password-strength-text.strong {
+    color: #48bb78;
+}
