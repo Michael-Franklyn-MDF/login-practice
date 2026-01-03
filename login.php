@@ -47,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo json_encode([
             'success' => true,
             'message' => 'Login successful!',
+            'redirect' => 'dashboard.php',
             'user' => [
                 'username' => $user['username'],
                 'email' => $user['email']
