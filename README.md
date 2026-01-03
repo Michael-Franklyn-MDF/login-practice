@@ -371,7 +371,7 @@ If you encounter any issues or have questions:
 
 1. Check the [Troubleshooting](#-troubleshooting) section
 2. Open an issue on GitHub
-3. Contact: your.email@example.com
+3. Contact: michaeldavidfrankyl@gmail.com
 
 ---
 
