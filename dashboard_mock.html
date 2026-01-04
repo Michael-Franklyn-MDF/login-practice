@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - NeumorphUser</title>
+    <link rel="stylesheet" href="dashboard-style.css">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>My Account</h2>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active">
+                    <span class="icon">👤</span> Profile
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">✏️</span> Edit Profile
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">🔒</span> Change Password
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">⚙️</span> Settings
+                </a>
+                <a href="#" class="nav-item logout">
+                    <span class="icon">🚪</span> Logout
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="page-header">
+                <h1>Welcome back, NeumorphUser!</h1>
+                <p class="subtitle">Manage your account settings and preferences</p>
+            </header>
+
+            <!-- Profile Section -->
+            <section id="profileSection" class="content-section active">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Profile Information</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="profile-grid">
+                            <div class="profile-item">
+                                <label>Username</label>
+                                <p>NeumorphUser</p>
+                            </div>
+                            <div class="profile-item">
+                                <label>Email Address</label>
+                                <p>user@example.com</p>
+                            </div>
+                            <div class="profile-item">
+                                <label>Member Since</label>
+                                <p>January 4, 2026</p>
+                            </div>
+                            <div class="profile-item">
+                                <label>Last Login</label>
+                                <p>January 4, 2026 10:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
