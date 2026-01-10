@@ -1,12 +1,11 @@
 <?php
-// config.php - Database configuration for MAMP
+// config.php
 $DB_HOST = 'localhost';
 $DB_USER = 'root';
 $DB_PASS = 'root';
 $DB_NAME = 'user_auth_system';
 $DB_PORT = 3306;
 
-// Create connection with port specified
 function getDBConnection()
 {
     global $DB_HOST, $DB_USER, $DB_PASS, $DB_NAME, $DB_PORT;
@@ -20,7 +19,7 @@ function getDBConnection()
     return $conn;
 }
 
-// Start session if not already started
+// IMPORTANT: Start session ONLY ONCE
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
