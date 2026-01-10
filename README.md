@@ -34,7 +34,7 @@ A modern, secure, and aesthetically pleasing user authentication system featurin
 
 The project uses a flattened structure for simplicity:
 
-```
+```text
 login-practice/
 ├── index.html              # Main Landing (Login & Signup Forms)
 ├── style.css               # Neumorphic Styles for Login/Signup
